@@ -1,8 +1,12 @@
+import {HeroesData, HeroesDataItem} from '../redux/types/listHeroesTypes';
 import axios from './axios';
 
-export const getListHeroes = async () => {
-  return axios({
+export const getListHeroes = async (page: number) => {
+  return axios<HeroesData<HeroesDataItem>>({
     method: 'get',
-    url: '/people',
+    url: `/people`,
+    params: {
+      page,
+    },
   });
 };

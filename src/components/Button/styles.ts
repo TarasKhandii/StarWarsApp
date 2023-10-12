@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     width: 150,
     height: 50,
     borderWidth: 2,
-    borderColor: COLORS.red,
+    borderColor: COLORS.white,
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: FONT_FAMILIES.SFProDisplay.medium,
     fontSize: 20,
-    color: COLORS.red,
+    color: COLORS.white,
   },
 });
 

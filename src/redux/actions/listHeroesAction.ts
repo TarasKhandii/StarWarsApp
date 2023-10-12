@@ -1,30 +1,35 @@
+/* ------------------------------ BASIC IMPORT ------------------------------ */
 import {Dispatch} from 'react';
-import {
-  ListHeroesAction,
-  ListHeroesActionTypes,
-} from '../types/listHeroesTypes';
+/* ---------------------------------- TYPES --------------------------------- */
+import {HeroesAction, HeroesActionTypes} from '../types/listHeroesTypes';
+/* ---------------------------------- AXIOS --------------------------------- */
 import {getListHeroes} from '../../api/listHeroesApi';
+/* ---------------------------------- UTIL ---------------------------------- */
+import {getIdFromData} from '../../util/dataUtils';
 
-export const fetchListHeroes = () => {
-  return async (dispatch: Dispatch<ListHeroesAction>) => {
+export const fetchListHeroes = (page = 1) => {
+  return async (dispatch: Dispatch<HeroesAction>) => {
     try {
       dispatch({
-        type: ListHeroesActionTypes.LIST__HEROES__LOADING,
+        type: HeroesActionTypes.LIST__HEROES__LOADING,
         payload: true,
       });
-      const res = await getListHeroes();
-      console.log('res listHeroes', res);
+      const res = await getListHeroes(page);
+      const formattedHeroes = res.data.results.map(item => ({
+        ...item,
+        id: getIdFromData(item.url),
+      }));
       dispatch({
-        type: ListHeroesActionTypes.GET__LIST__HEROES__SUCCESS,
-        payload: res.data,
+        type: HeroesActionTypes.GET__LIST__HEROES__SUCCESS,
+        payload: {...res.data, results: formattedHeroes},
       });
 
       dispatch({
-        type: ListHeroesActionTypes.LIST__HEROES__LOADING,
+        type: HeroesActionTypes.LIST__HEROES__LOADING,
         payload: false,
       });
     } catch (error) {
-      console.log('error listHeroes', error);
+      console.error('error listHeroes', error);
     }
   };
 };

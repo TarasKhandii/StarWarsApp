@@ -1,23 +1,31 @@
 import {
-  ListHeroesAction,
-  ListHeroesActionTypes,
-  ListHeroesState,
+  HeroesAction,
+  HeroesActionTypes,
+  HeroesState,
 } from '../types/listHeroesTypes';
 
-const initialState: ListHeroesState = {
-  res: {},
+const initialState: HeroesState = {
+  res: null,
   loading: false,
 };
 
 export const ListHeroesReducer = (
   state = initialState,
-  action: ListHeroesAction,
-): ListHeroesState => {
+  action: HeroesAction,
+): HeroesState => {
   switch (action.type) {
-    case ListHeroesActionTypes.LIST__HEROES__LOADING:
+    case HeroesActionTypes.LIST__HEROES__LOADING:
       return {...state, loading: action.payload};
-    case ListHeroesActionTypes.GET__LIST__HEROES__SUCCESS:
-      return {...state, res: action.payload};
+    case HeroesActionTypes.GET__LIST__HEROES__SUCCESS:
+      return !state.res
+        ? {...state, res: action.payload}
+        : {
+            ...state,
+            res: {
+              ...action.payload,
+              results: [...state.res.results, ...action.payload.results],
+            },
+          };
     default:
       return state;
   }

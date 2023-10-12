@@ -1,5 +1,7 @@
-import * as ListHeroesAction from './listHeroesAction';
+import * as HeroesAction from './listHeroesAction';
+import * as CounterAction from './counterAction';
 
 export default {
-  ...ListHeroesAction,
+  ...HeroesAction,
+  ...CounterAction,
 };

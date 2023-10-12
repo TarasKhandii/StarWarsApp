@@ -3,4 +3,5 @@ export const COLORS = {
   mediumBlue: '#7B68EE',
   black: '#000000',
   white: '#FFFFFF',
+  yellow: '#FFE300',
 };

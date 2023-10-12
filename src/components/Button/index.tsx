@@ -9,7 +9,7 @@ interface BtnProps {
   onPress?: () => void;
 }
 
-const BtnComponent: React.FC<BtnProps> = ({title, onPress}) => {
+const Button: React.FC<BtnProps> = ({title, onPress}) => {
   return (
     <TouchableOpacity style={styles.btn} onPress={onPress}>
       <Text style={styles.title}>{title}</Text>
@@ -17,4 +17,4 @@ const BtnComponent: React.FC<BtnProps> = ({title, onPress}) => {
   );
 };
 
-export default BtnComponent;
+export default Button;

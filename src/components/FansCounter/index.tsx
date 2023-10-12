@@ -9,7 +9,7 @@ interface CounterProps {
   numberFans: number;
 }
 
-const CounterFansComponent: React.FC<CounterProps> = ({gender, numberFans}) => {
+const FansCounter: React.FC<CounterProps> = ({gender, numberFans}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.numberFans}>{numberFans}</Text>
@@ -18,4 +18,4 @@ const CounterFansComponent: React.FC<CounterProps> = ({gender, numberFans}) => {
   );
 };
 
-export default CounterFansComponent;
+export default FansCounter;
